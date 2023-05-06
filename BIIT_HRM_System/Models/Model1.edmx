@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HRMDB2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HRMDB2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Allow_Leave">
           <Key>
             <PropertyRef Name="A_id" />
@@ -53,14 +53,14 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
         </EntityType>
         <EntityType Name="Education">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="major" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="board" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="year" Type="int" Nullable="false" />
-          <Property Name="applicantid" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Major" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Board" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="ApplicantId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Experience">
           <Key>
@@ -135,6 +135,9 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
           <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Is_Educated" Type="bit" />
+          <Property Name="Is_Experienced" Type="bit" />
+          <Property Name="Image" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__Apply__App_id__267ABA7A">
           <End Role="user" Type="Self.user" Multiplicity="1" />
@@ -148,15 +151,15 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Education__appli__47DBAE45">
-          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+        <Association Name="FK__Education__Appli__18EBB532">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
           <End Role="Education" Type="Self.Education" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="user">
               <PropertyRef Name="Uid" />
             </Principal>
             <Dependent Role="Education">
-              <PropertyRef Name="applicantid" />
+              <PropertyRef Name="ApplicantId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,7 +213,7 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
             <End Role="user" EntitySet="user" />
             <End Role="Apply" EntitySet="Apply" />
           </AssociationSet>
-          <AssociationSet Name="FK__Education__appli__47DBAE45" Association="Self.FK__Education__appli__47DBAE45">
+          <AssociationSet Name="FK__Education__Appli__18EBB532" Association="Self.FK__Education__Appli__18EBB532">
             <End Role="user" EntitySet="user" />
             <End Role="Education" EntitySet="Education" />
           </AssociationSet>
@@ -223,8 +226,7 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
             <End Role="Feedback" EntitySet="Feedback" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRMDB2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -258,18 +260,6 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
           <Property Name="End_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Reason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Education">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="major" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="board" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="year" Type="Int32" Nullable="false" />
-          <Property Name="applicantid" Type="Int32" />
-          <NavigationProperty Name="user" Relationship="Self.FK__Education__appli__47DBAE45" FromRole="Education" ToRole="user" />
         </EntityType>
         <EntityType Name="Experience">
           <Key>
@@ -347,9 +337,12 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
           <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Educated" Type="Boolean" />
+          <Property Name="Is_Experienced" Type="Boolean" />
+          <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Apply" Relationship="Self.FK__Apply__App_id__267ABA7A" FromRole="user" ToRole="Apply" />
-          <NavigationProperty Name="Educations" Relationship="Self.FK__Education__appli__47DBAE45" FromRole="user" ToRole="Education" />
           <NavigationProperty Name="Experiences" Relationship="Self.FK__Experienc__Appli__2C3393D0" FromRole="user" ToRole="Experience" />
+          <NavigationProperty Name="Educations" Relationship="HRMDB2Model.FK__Education__Appli__18EBB532" FromRole="user" ToRole="Education" />
         </EntityType>
         <EntityType Name="Attendance">
           <Key>
@@ -377,18 +370,6 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Education__appli__47DBAE45">
-          <End Role="user" Type="Self.user" Multiplicity="0..1" />
-          <End Role="Education" Type="Self.Education" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="Uid" />
-            </Principal>
-            <Dependent Role="Education">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Experienc__Appli__2C3393D0">
           <End Role="user" Type="Self.user" Multiplicity="0..1" />
           <End Role="Experience" Type="Self.Experience" Multiplicity="*" />
@@ -413,11 +394,10 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HRMDB2Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HRMDB2Entities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Allow_Leave" EntityType="Self.Allow_Leave" />
           <EntitySet Name="Applies" EntityType="Self.Apply" />
           <EntitySet Name="Apply_Leave" EntityType="Self.Apply_Leave" />
-          <EntitySet Name="Educations" EntityType="Self.Education" />
           <EntitySet Name="Experiences" EntityType="Self.Experience" />
           <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
@@ -429,10 +409,6 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
             <End Role="user" EntitySet="users" />
             <End Role="Apply" EntitySet="Applies" />
           </AssociationSet>
-          <AssociationSet Name="FK__Education__appli__47DBAE45" Association="Self.FK__Education__appli__47DBAE45">
-            <End Role="user" EntitySet="users" />
-            <End Role="Education" EntitySet="Educations" />
-          </AssociationSet>
           <AssociationSet Name="FK__Experienc__Appli__2C3393D0" Association="Self.FK__Experienc__Appli__2C3393D0">
             <End Role="user" EntitySet="users" />
             <End Role="Experience" EntitySet="Experiences" />
@@ -441,13 +417,42 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
             <End Role="Job" EntitySet="Jobs" />
             <End Role="Feedback" EntitySet="Feedbacks" />
           </AssociationSet>
+          <EntitySet Name="Educations" EntityType="HRMDB2Model.Education" />
+          <AssociationSet Name="FK__Education__Appli__18EBB532" Association="HRMDB2Model.FK__Education__Appli__18EBB532">
+            <End Role="user" EntitySet="users" />
+            <End Role="Education" EntitySet="Educations" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Major" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Board" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="HRMDB2Model.FK__Education__Appli__18EBB532" FromRole="Education" ToRole="user" />
+        </EntityType>
+        <Association Name="FK__Education__Appli__18EBB532">
+          <End Type="HRMDB2Model.user" Role="user" Multiplicity="1" />
+          <End Type="HRMDB2Model.Education" Role="Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="ApplicantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HRMDB2ModelStoreContainer" CdmEntityContainer="HRMDB2Entities">
+        <EntityContainerMapping StorageEntityContainer="HRMDB2ModelStoreContainer" CdmEntityContainer="HRMDB2Entities2">
           <EntitySetMapping Name="Allow_Leave">
             <EntityTypeMapping TypeName="HRMDB2Model.Allow_Leave">
               <MappingFragment StoreEntitySet="Allow_Leave">
@@ -478,18 +483,6 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
                 <ScalarProperty Name="End_date" ColumnName="End_date" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Educations">
-            <EntityTypeMapping TypeName="HRMDB2Model.Education">
-              <MappingFragment StoreEntitySet="Education">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="major" ColumnName="major" />
-                <ScalarProperty Name="board" ColumnName="board" />
-                <ScalarProperty Name="year" ColumnName="year" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -570,6 +563,9 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="Is_Educated" ColumnName="Is_Educated" />
+                <ScalarProperty Name="Is_Experienced" ColumnName="Is_Experienced" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -583,6 +579,18 @@ warning 6002: The table/view 'HRMDB2.dbo.Attendance' does not have a primary key
                 <ScalarProperty Name="Time_in" ColumnName="Time_in" />
                 <ScalarProperty Name="Time_out" ColumnName="Time_out" />
                 <ScalarProperty Name="AttendanceStatus" ColumnName="AttendanceStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educations">
+            <EntityTypeMapping TypeName="HRMDB2Model.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="Major" ColumnName="Major" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

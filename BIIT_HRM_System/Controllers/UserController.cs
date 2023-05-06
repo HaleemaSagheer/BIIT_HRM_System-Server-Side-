@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using BIIT_HRM_System.Models;
 
@@ -11,7 +14,7 @@ namespace BIIT_HRM_System.Controllers
     
     public class UserController : ApiController
     {
-        readonly HRMDB2Entities db = new HRMDB2Entities();
+        readonly HRMDB2Entities2 db = new HRMDB2Entities2();
 
 
 
@@ -22,7 +25,7 @@ namespace BIIT_HRM_System.Controllers
             try
             {
 
-                var login = db.users.Where(b => b.email == email && b.password == password).OrderBy(b => b.Uid).ToList();
+                var login = db.users.Where(b => b.email == email && b.password == password).OrderBy(b => b.Uid).FirstOrDefault();
 
                 if (login == null)
                 {
@@ -30,10 +33,11 @@ namespace BIIT_HRM_System.Controllers
 
                 }
                 // jo data match hua us k against jo role ho ga  wo save krna
-                var role = login[0].role;
-                var name = login[0].Fname;
+                //var role = login[0].role;
+                //var name = login[0].Fname;
+                //var id = login[0].Uid;
                 //return Request.CreateResponse(HttpStatusCode.OK, login[0].Fname+"  login Successfully");
-                var responseObj = new { message = login[0].Fname + " login Successfully", role, name };
+                var responseObj = new { message = login.Fname+ " login Successfully", login};
                 return Request.CreateResponse(HttpStatusCode.OK, responseObj);
 
             }
@@ -66,5 +70,7 @@ namespace BIIT_HRM_System.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+        
     }
 }

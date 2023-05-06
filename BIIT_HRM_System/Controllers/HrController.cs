@@ -10,7 +10,7 @@ namespace BIIT_HRM_System.Controllers
 {
     public class HrController : ApiController
     {
-        readonly HRMDB2Entities db = new HRMDB2Entities();
+        readonly HRMDB2Entities2 db = new HRMDB2Entities2();
         [HttpPost]
         public HttpResponseMessage JobPost(job_posts j)
 
@@ -39,5 +39,7 @@ namespace BIIT_HRM_System.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+
     }
 }

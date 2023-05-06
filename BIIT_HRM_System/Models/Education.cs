@@ -14,12 +14,12 @@ namespace BIIT_HRM_System.Models
     
     public partial class Education
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public string major { get; set; }
-        public string board { get; set; }
-        public int year { get; set; }
-        public Nullable<int> applicantid { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Major { get; set; }
+        public string Board { get; set; }
+        public int Year { get; set; }
+        public int ApplicantId { get; set; }
     
         public virtual user user { get; set; }
     }

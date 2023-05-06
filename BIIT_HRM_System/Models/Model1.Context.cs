@@ -13,10 +13,10 @@ namespace BIIT_HRM_System.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HRMDB2Entities : DbContext
+    public partial class HRMDB2Entities2 : DbContext
     {
-        public HRMDB2Entities()
-            : base("name=HRMDB2Entities")
+        public HRMDB2Entities2()
+            : base("name=HRMDB2Entities2")
         {
         }
     
@@ -28,7 +28,6 @@ namespace BIIT_HRM_System.Models
         public virtual DbSet<Allow_Leave> Allow_Leave { get; set; }
         public virtual DbSet<Apply> Applies { get; set; }
         public virtual DbSet<Apply_Leave> Apply_Leave { get; set; }
-        public virtual DbSet<Education> Educations { get; set; }
         public virtual DbSet<Experience> Experiences { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
@@ -36,5 +35,6 @@ namespace BIIT_HRM_System.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<Attendance> Attendances { get; set; }
+        public virtual DbSet<Education> Educations { get; set; }
     }
 }

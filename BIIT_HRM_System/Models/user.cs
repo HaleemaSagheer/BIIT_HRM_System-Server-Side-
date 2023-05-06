@@ -17,8 +17,8 @@ namespace BIIT_HRM_System.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
         {
-            this.Educations = new HashSet<Education>();
             this.Experiences = new HashSet<Experience>();
+            this.Educations = new HashSet<Education>();
         }
     
         public int Uid { get; set; }
@@ -32,11 +32,14 @@ namespace BIIT_HRM_System.Models
         public string address { get; set; }
         public string password { get; set; }
         public string role { get; set; }
+        public Nullable<bool> Is_Educated { get; set; }
+        public Nullable<bool> Is_Experienced { get; set; }
+        public string Image { get; set; }
     
         public virtual Apply Apply { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Education> Educations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Experience> Experiences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Education> Educations { get; set; }
     }
 }

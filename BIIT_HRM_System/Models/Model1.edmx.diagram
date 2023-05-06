@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="edbb2a0183b94ea2bf4cd81a1edfaae2" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="0286d8bf3e7f446dabae95a992cab48f" Name="Diagram1">
         <EntityTypeShape EntityType="HRMDB2Model.Allow_Leave" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRMDB2Model.Apply" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRMDB2Model.Apply_Leave" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRMDB2Model.Education" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRMDB2Model.Experience" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMDB2Model.Apply" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMDB2Model.Apply_Leave" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMDB2Model.Experience" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HRMDB2Model.Feedback" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="HRMDB2Model.Job" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRMDB2Model.job_posts" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRMDB2Model.sysdiagram" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRMDB2Model.user" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRMDB2Model.Attendance" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMDB2Model.job_posts" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMDB2Model.sysdiagram" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMDB2Model.user" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRMDB2Model.Attendance" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="HRMDB2Model.FK__Apply__App_id__267ABA7A" ManuallyRouted="false" />
-        <AssociationConnector Association="HRMDB2Model.FK__Education__appli__47DBAE45" ManuallyRouted="false" />
         <AssociationConnector Association="HRMDB2Model.FK__Experienc__Appli__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="HRMDB2Model.FK__Feedback__j_id__5535A963" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRMDB2Model.Education" Width="1.5" PointX="3" PointY="11.625" />
+        <AssociationConnector Association="HRMDB2Model.FK__Education__Appli__18EBB532" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
